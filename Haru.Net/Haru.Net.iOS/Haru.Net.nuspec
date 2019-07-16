@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>Haru.Net.Mobile</id>
+    <version>$version$</version>
+    <authors>Haru,Gehtsoft</authors>
+    <owners>Haru,Gehtsoft</owners>
+    <projectUrl>http://libharu.org/</projectUrl>
+    <license type="expression">Zlib AND Libpng</license>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Libharu (Haru FREE PDF Library) .NET wrapper for net451+ and netstandard2.0 (including netcore). The package consists of precompiled binaries for Android and iOS.</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Gehtsoft USA LLC 2016-2019</copyright>
+    <dependencies>
+	  <group targetFramework="MonoAndroid"></group>
+	  <group targetFramework="Xamarin.iOS10"></group>
+	  <group targetFramework="netstandard2.0"></group>
+    </dependencies>
+  </metadata>
+  <files>
+	  <!-- Android -->
+	  <file src="..\Haru.Net\bin\Release\net451\Haru.Net.dll" target="lib\MonoAndroid\Haru.Net.dll" />
+	  <file src="..\Haru.Net\native\android\armeabi-v7a\**.*" target="runtimes\android\armeabi-v7a" /> 
+	  <file src="..\Haru.Net\native\android\armeabi\**.*" target="runtimes\android\armeabi" />  
+	  <file src="..\Haru.Net\native\android\x86\**.*" target="runtimes\android\x86" /> 
+	  <file src="..\Haru.Net\native\android\x86_64\**.*" target="runtimes\android\x86_64" /> 
+      <file src="..\Haru.Net\native\android\arm64-v8a\**.*" target="runtimes\android\arm64-v8a" /> 
+	  
+	  <!-- iOS --> 
+	  <file src="Haru.Net.iOS\bin\Release\Haru.Net.dll" target="lib\Xamarin.iOS10\Haru.Net.dll" /> 
+	  
+	  <file src="build\Haru.Net.targets" target="build\Haru.Net.Mobile.targets" />
+  </files>
+</package>

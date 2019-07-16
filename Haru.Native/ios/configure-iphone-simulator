@@ -1,0 +1,31 @@
+#! /bin/bash
+
+echo Configuring build for iphone simulator
+
+rm Makefile
+rm CMakeCache.txt
+rm -rf CMakeFiles
+
+unset CPATH
+unset C_INCLUDE_PATH
+unset CPLUS_INCLUDE_PATH
+unset OBJC_INCLUDE_PATH
+unset LIBS
+unset DYLD_FALLBACK_LIBRARY_PATH
+unset DYLD_FALLBACK_FRAMEWORK_PATH
+
+OS_SIM="Simulator"
+export SDKVER=`xcodebuild -showsdks | grep iphoneos | egrep "[[:digit:]]+\.[[:digit:]]+" -o | tail -1`
+export DEVROOT=`xcode-select -p`/Platforms/iPhoneSimulator.platform/Developer
+export XCODE_DEV_PATH=`xcode-select -p`
+export SDKROOT="$DEVROOT/SDKs/iPhoneSimulator.sdk"
+export PKG_CONFIG_PATH="$SDROOT/usr/lib/pkgconfig":"/opt/iphone-simulator-$SDKVER/lib/pkgconfig":"/usr/local/iphone-simulator-$SDKVER/lib/pkgconfig"
+export PKG_CONFIG_LIBDIR="$PKG_CONFIG_PATH"
+export MAINFOLDER=`pwd`
+
+if [ $1 == iOS32 ]
+then
+  cmake -DCMAKE_TOOLCHAIN_FILE="./ios/iPhoneToolchains/iphone-simulator32.toolchain" -DCMAKE_INSTALL_PREFIX="/opt/iphone-simulator-$SDKVER" -DSDKVER=$SDKVER -DXCODE_DEV_PATH="$XCODE_DEV_PATH"
+else
+  cmake -DCMAKE_TOOLCHAIN_FILE="./ios/iPhoneToolchains/iphone-simulator.toolchain" -DCMAKE_INSTALL_PREFIX="/opt/iphone-simulator-$SDKVER" -DSDKVER=$SDKVER -DXCODE_DEV_PATH="$XCODE_DEV_PATH"
+fi

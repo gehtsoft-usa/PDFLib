@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>Haru.Net</id>
+    <version>$version$</version>
+    <authors>Haru,Gehtsoft</authors>
+    <owners>Haru,Gehtsoft</owners>
+    <projectUrl>http://libharu.org/</projectUrl>
+    <license type="expression">Zlib AND Libpng</license>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Libharu (Haru FREE PDF Library) .NET wrapper for net451+ and netstandard2.0 (including netcore). The package consists of precompiled binaries for win32, win64, linux64 (tested on CentOS 7 and Ununtu 18) and MacOS.</description>
+    <releaseNotes></releaseNotes>
+    <dependencies>
+      <group targetFramework="net451"></group>
+      <group targetFramework="netstandard2.0"></group>
+    </dependencies>
+  </metadata>
+  <files>
+      <file src="bin\Release\net451\Haru.Net.dll" target="lib\net451" />
+      <file src="bin\Release\netstandard2.0\Haru.Net.dll" target="lib\netstandard2.0" />
+      <file src="native\macos\x64\**.*" target="runtimes\osx-x64\native" />
+      <file src="native\linux\x64\**.*" target="runtimes\linux-x64\native" />
+      <file src="native\windows\x64\**.*" target="runtimes\win-x64\native" />
+      <file src="native\windows\x32\**.*" target="runtimes\win-x86\native" />
+
+  </files>
+</package>

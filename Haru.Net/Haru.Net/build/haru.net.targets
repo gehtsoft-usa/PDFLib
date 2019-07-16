@@ -1,0 +1,8 @@
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Condition="'$(Platform)' == 'x64'">
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\runtimes\win-x64\native\libharu23.dll" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Platform)' != 'x64'">
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\runtimes\win-x86\native\libharu23.dll" />
+  </ItemGroup>
+</Project>

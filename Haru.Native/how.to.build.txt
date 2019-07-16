@@ -1,0 +1,86 @@
+How To Build.
+
+Windows.
+
+1) Visual Studio 2017 with C++ workload must be installed
+
+2) CMake must be installed and available via PATH
+
+3) Simply run win32.bat to build 32-bit version and win64.bat to build 64-bit version. DLLs will be available in Release subfolder of
+   build32 and build64 folders.
+
+Linux (CentOS)
+
+1) Must have CentOS 7 (virtual or phisical server) with
+  - GCC and G++ compilers installed
+  - CMake installed
+
+2) Copy src folder, CMakeList.txt and linux.sh files to CentOS
+
+2.5) You may need to chmod 0777 linux.sh
+
+3) Simply run linux.sh as ./linux.sh
+
+4) 64-bit linux binaries will be linux64 folder
+
+MacOS
+
+1) Must have MacOS with XCode console tools installed
+
+2) Must have CMake installed (sometimes CMake does not install command line tools properly so use
+sudo "/Applications/CMake.app/Contents/bin/cmake-gui" --install
+from terminal)
+
+3) Copy src folder, CMakeList.txt and macos.sh
+
+3.5) You may need to chmod 0777 macos.sh
+
+4) Simply run macos.sh as ./macos.sh
+
+4) 64-bit macos binaries will be macos folder
+
+Automated Remote Build
+
+You can also use rbuild/ scripts to build remotely on centos or macos with your windows console.
+
+In order to do that
+
+1) Install putty, plink and pscp utilities from
+https://www.chiark.greenend.org.uk/~sgtatham/putty/
+and make sure that they are in the PATH environment variable
+
+2) Use rbuild_centos.cmd and rebuild_macos.cmd with the server ip, user name and user password as a parameters.
+
+
+Android
+
+Before building:
+1) Make sure you have CentOS 7 (virtual or physical server) with installed:
+  - GCC and G++ compilers
+  - Android NDK r10e or later (https://developer.android.com/ndk/downloads)
+
+2) Specify the environment variable ANDROID_NDK_ROOT
+(Android's NDK usually is supplied as a tar.gz archive, you can extract it into the directory /usr/local/android_ndk,
+and then run the following command in a terminal: export  ANDROID_NDK_ROOT= /usr/local/android_ndk).
+
+3) Copy src and android folders, CMakeList.txt and android.sh files to CentOS.
+You may need to chmod 0777 android.sh
+
+To build Android libraries, run android.sh as ./android.sh
+As a result, Arm android binaries will be located in the android/libs folder.
+
+
+iOS 
+
+Before building:
+1) Make sure that you have MacOS with XCode console tools installed.
+
+2) Make sure that you have CMake installed. Sometimes CMake does not install command line tools properly, in this case use the command:
+sudo /Applications/CMake.app/Contents/bin/cmake-gui –install
+
+3) Copy src and ios folders, CMakeList.txt and ios.sh to any directory on the Mac.
+You may need to chmod 0777 ios.sh
+
+To build iOS library and framework, run ios.sh as ./ios.sh
+
+As a result, the Arm iOS binary libharu23.a and Haru.framework will be located in the ios/snapshot folder.

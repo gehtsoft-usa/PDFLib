@@ -1,0 +1,56 @@
+--- /Users/inarvaev/Developer/Haru/PDFLib/Haru.Native/CMakeLists.txt	2019-04-04 15:53:25.000000000 +0600
++++ /Users/inarvaev/Desktop/CMakeLists.txt	2019-04-04 15:38:18.000000000 +0600
+@@ -7,15 +7,30 @@
+ 
+ ucm_set_runtime(STATIC)
+ 
+-if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+-    ucm_add_flags(CXX -fvisibility=hidden)
+-endif()
++if (MOBILE_CROSS MATCHES "YES")
++    ucm_add_flags(CXX -fvisibility=default)
++else()
++    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
++        ucm_add_flags(CXX -fvisibility=hide)
++    endif()
++endif()
++
++if (MOBILE_CROSS MATCHES "YES")
++    set (PLATFORM_SPEC_HEADERS
++            src/pnglib/arm/arm_init.c
++            src/pnglib/arm/filter_neon.S
++            src/pnglib/arm/filter_neon_intrinsics.c)
++else()
++
++    set (PLATFORM_SPEC_HEADERS
++ 	    src/pnglib/intel/filter_sse2_intrinsics.c
++            src/pnglib/intel/intel_init.c)
++endif()
+ 
+ if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
+     ucm_add_flags(CXX /W3)
+ endif()
+ 
+-
+ add_library(libharu23 SHARED src/libharu/hpdf.h
+         src/libharu/hpdf_3dmeasure.c
+         src/libharu/hpdf_3dmeasure.h
+@@ -130,8 +145,6 @@
+         src/pnglib/pngwrite.c
+         src/pnglib/pngwtran.c
+         src/pnglib/pngwutil.c
+-        src/pnglib/intel/filter_sse2_intrinsics.c
+-        src/pnglib/intel/intel_init.c
+         src/zlib/adler32.c
+         src/zlib/compress.c
+         src/zlib/crc32.c
+@@ -157,6 +170,8 @@
+         src/zlib/zconf.h
+         src/zlib/zlib.h
+         src/zlib/zutil.c
+-        src/zlib/zutil.h)
++        src/zlib/zutil.h
++	${PLATFORM_SPEC_HEADERS}
++        )
+ 
+ set_target_properties(libharu23 PROPERTIES PREFIX "")
