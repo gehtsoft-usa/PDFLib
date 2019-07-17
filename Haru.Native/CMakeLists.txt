@@ -19,9 +19,10 @@ if (MOBILE_CROSS MATCHES "YES")
     set (PLATFORM_SPEC_HEADERS
             src/pnglib/arm/arm_init.c
             src/pnglib/arm/filter_neon.S
-            src/pnglib/arm/filter_neon_intrinsics.c)
+            src/pnglib/arm/filter_neon_intrinsics.c
+	    src/pnglib/arm/palette_neon_intrinsics.c
+	    )
 else()
-
     set (PLATFORM_SPEC_HEADERS
  	    src/pnglib/intel/filter_sse2_intrinsics.c
             src/pnglib/intel/intel_init.c)
