@@ -33,6 +33,7 @@ Changes:
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
 
 #if __IOS__
 using ObjCRuntime;
@@ -1007,12 +1008,18 @@ namespace HPdf
             HPdfRect rect, string url);
 
         [DllImport(dllImportName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern float HPDF_Page_TextWidth(IntPtr page,
-            string text);
+        private static extern float HPDF_Page_TextWidth(IntPtr page, string text);
+
+        [DllImport(dllImportName, EntryPoint = "HPDF_Page_TextWidth" , CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        private static extern float HPDF_Page_TextWidthEncoded(IntPtr page, ref byte text);
 
         [DllImport(dllImportName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         private static extern uint HPDF_Page_MeasureText(IntPtr page,
             string text, float width, int wordwrap, ref float real_width);
+
+        [DllImport(dllImportName, EntryPoint = "HPDF_Page_MeasureText", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        private static extern uint HPDF_Page_MeasureTextEncoded(IntPtr page,
+            ref byte text, float width, int wordwrap, ref float real_width);
 
         [DllImport(dllImportName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         private static extern float HPDF_Page_GetWidth(IntPtr page);
@@ -1275,31 +1282,34 @@ namespace HPdf
         private static extern uint HPDF_Page_ShowTextNextLineEx(IntPtr page,
             float word_space, float char_space, string text);
 
+        [DllImport(dllImportName, EntryPoint = "HPDF_Page_ShowText", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        private static extern uint HPDF_Page_ShowTextEncoded(IntPtr page, ref byte text);
+
+        [DllImport(dllImportName, EntryPoint = "HPDF_Page_ShowTextNextLine", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        private static extern uint HPDF_Page_ShowTextNextLineEncoded(IntPtr page, ref byte text);
+
+        [DllImport(dllImportName, EntryPoint = "HPDF_Page_ShowTextNextLineEx", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        private static extern uint HPDF_Page_ShowTextNextLineExEncoded(IntPtr page, float word_space, float char_space, ref byte text);
+
         /*--- Color showing ------------------------------------------------------*/
 
         [DllImport(dllImportName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern uint HPDF_Page_SetGrayFill(IntPtr page,
-            float gray);
+        private static extern uint HPDF_Page_SetGrayFill(IntPtr page, float gray);
 
         [DllImport(dllImportName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern uint HPDF_Page_SetGrayStroke(IntPtr page,
-            float gray);
+        private static extern uint HPDF_Page_SetGrayStroke(IntPtr page, float gray);
 
         [DllImport(dllImportName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern uint HPDF_Page_SetRGBFill(IntPtr page,
-            float r, float g, float b);
+        private static extern uint HPDF_Page_SetRGBFill(IntPtr page, float r, float g, float b);
 
         [DllImport(dllImportName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern uint HPDF_Page_SetRGBStroke(IntPtr page,
-            float r, float g, float b);
+        private static extern uint HPDF_Page_SetRGBStroke(IntPtr page, float r, float g, float b);
 
         [DllImport(dllImportName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern uint HPDF_Page_SetCMYKFill(IntPtr page,
-            float c, float m, float y, float k);
+        private static extern uint HPDF_Page_SetCMYKFill(IntPtr page, float c, float m, float y, float k);
 
         [DllImport(dllImportName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern uint HPDF_Page_SetCMYKStroke(IntPtr page,
-            float c, float m, float y, float k);
+        private static extern uint HPDF_Page_SetCMYKStroke(IntPtr page, float c, float m, float y, float k);
 
         [DllImport(dllImportName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         private static extern uint HPDF_Page_ExecuteXObject(IntPtr page,
@@ -1316,21 +1326,26 @@ namespace HPdf
             float x, float y, float ray);
 
         [DllImport(dllImportName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern uint HPDF_Page_Arc(IntPtr page,
-            float x, float y, float ray, float ang1, float ang2);
+        private static extern uint HPDF_Page_Arc(IntPtr page, float x, float y, float ray, float ang1, float ang2);
 
         [DllImport(dllImportName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern uint HPDF_Page_Ellipse(IntPtr page,
-            float x, float y, float xray, float yray);
+        private static extern uint HPDF_Page_Ellipse(IntPtr page, float x, float y, float xray, float yray);
 
         [DllImport(dllImportName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern uint HPDF_Page_TextOut(IntPtr page,
-            float xpos, float ypos, string text);
+        private static extern uint HPDF_Page_TextOut(IntPtr page, float xpos, float ypos, string text);
 
         [DllImport(dllImportName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         private static extern uint HPDF_Page_TextRect(IntPtr page,
+            float left, float top, float right, float bottom, string text, HPdfTextAlignment align, ref uint len);
+
+        [DllImport(dllImportName, EntryPoint = "HPDF_Page_TextOut", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        private static extern uint HPDF_Page_TextOutEncoded(IntPtr page, float xpos, float ypos, ref byte text);
+
+        [DllImport(dllImportName, EntryPoint = "HPDF_Page_TextRect", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        private static extern uint HPDF_Page_TextRectEncoded(IntPtr page,
             float left, float top, float right, float bottom,
-            string text, HPdfTextAlignment align, ref uint len);
+            ref byte text, HPdfTextAlignment align, ref uint len);
+
 
         [DllImport(dllImportName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         private static extern uint HPDF_Page_SetSlideShow(IntPtr page,
@@ -1395,8 +1410,11 @@ namespace HPdf
 
         public float TextWidth(string text) => HPDF_Page_TextWidth(hpage, text);
 
-        public uint MeasureText(string text, float width, bool wordwrap,
-            ref float real_width)
+        public float TextWidth(byte[] text) => HPDF_Page_TextWidthEncoded(hpage, ref text[0]);
+
+        public float TextWidth(string text, string encoding) => TextWidth(Encoding.GetEncoding(encoding).GetBytes(text + "\0"));
+
+        public uint MeasureText(string text, float width, bool wordwrap, ref float real_width)
         {
             int ww;
 
@@ -1415,6 +1433,11 @@ namespace HPdf
         public uint MeasureText(string text, float width, bool wordwrap)
         {
             float dummy = 0;
+            return MeasureText(text, width, wordwrap, ref dummy);
+        }
+
+        public uint MeasureText(byte[] text, float width, bool wordwrap, ref float real_width)
+        {
             int ww;
 
             if (wordwrap)
@@ -1426,8 +1449,19 @@ namespace HPdf
                 ww = HPDF_FALSE;
             }
 
-            return HPDF_Page_MeasureText(hpage, text, width, ww, ref dummy);
+            return HPDF_Page_MeasureTextEncoded(hpage, ref text[0], width, ww, ref real_width);
         }
+
+        public uint MeasureText(byte[] text, float width, bool wordwrap)
+        {
+            float dummy = 0;
+            return MeasureText(text, width, wordwrap, ref dummy);
+        }
+
+        public uint MeasureText(string text, string encoding, float width, bool wordwrap, ref float real_width) => MeasureText(Encoding.GetEncoding(encoding).GetBytes(text + "\0"), width, wordwrap, ref real_width);
+
+        public uint MeasureText(string text, string encoding, float width, bool wordwrap) => MeasureText(Encoding.GetEncoding(encoding).GetBytes(text + "\0"), width, wordwrap);
+
 
         public float GetWidth() => HPDF_Page_GetWidth(hpage);
 
@@ -1634,11 +1668,22 @@ namespace HPdf
 
         public void ShowText(string text) => HPDF_Page_ShowText(hpage, text);
 
+        public void ShowText(byte[] text) => HPDF_Page_ShowTextEncoded(hpage, ref text[0]);
+
+        public void ShowText(string text, string encoding) => ShowText(Encoding.GetEncoding(encoding).GetBytes(text + "\0"));
+
         public void ShowTextNextLine(string text) => HPDF_Page_ShowTextNextLine(hpage, text);
 
-        public void ShowTextNextLineEx(float word_space, float char_space,
-            string text) => HPDF_Page_ShowTextNextLineEx(hpage, word_space, char_space, text);
+        public void ShowTextNextLine(byte[] text) => HPDF_Page_ShowTextNextLineEncoded(hpage, ref text[0]);
 
+        public void ShowTextNextLine(string text, string encoding) => ShowTextNextLine(Encoding.GetEncoding(encoding).GetBytes(text + "\0"));
+
+        public void ShowTextNextLineEx(float word_space, float char_space, string text) => HPDF_Page_ShowTextNextLineEx(hpage, word_space, char_space, text);
+
+        public void ShowTextNextLineEx(float word_space, float char_space, byte[] text) => HPDF_Page_ShowTextNextLineExEncoded(hpage, word_space, char_space, ref text[0]);
+
+        public void ShowTextNextLineEx(float word_space, float char_space, string text, string encoding) => ShowTextNextLineEx(word_space, char_space, Encoding.GetEncoding(encoding).GetBytes(text + "\0"));
+        
         public void SetGrayFill(float gray) => HPDF_Page_SetGrayFill(hpage, gray);
 
         public void SetGrayStroke(float gray) => HPDF_Page_SetGrayStroke(hpage, gray);
@@ -1662,9 +1707,21 @@ namespace HPdf
 
         public void TextOut(float xpos, float ypos, string text) => HPDF_Page_TextOut(hpage, xpos, ypos, text);
 
+        public void TextOut(float xpos, float ypos, string text, string encoding) => TextOut(xpos, ypos, Encoding.GetEncoding(encoding).GetBytes(text + "\0"));
+
+        public void TextOut(float xpos, float ypos, byte[] text) => HPDF_Page_TextOutEncoded(hpage, xpos, ypos, ref text[0]);
+
         public void TextRect(float left, float top, float right,
             float bottom, string text, HPdfTextAlignment align,
             ref uint len) => HPDF_Page_TextRect(hpage, left, top, right, bottom, text, align, ref len);
+
+        public void TextRect(float left, float top, float right,
+            float bottom, byte[] text, HPdfTextAlignment align,
+            ref uint len) => HPDF_Page_TextRectEncoded(hpage, left, top, right, bottom, ref text[0], align, ref len);
+
+        public void TextRect(float left, float top, float right,
+            float bottom, string text, string encoding, HPdfTextAlignment align,
+            ref uint len) => TextRect(left, top, right, bottom, Encoding.GetEncoding(encoding).GetBytes(text + "\0"), align, ref len);
 
         public void SetSlideShow(HPdfTransitionStyle type, float disp_time,
             float trans_time) => HPDF_Page_SetSlideShow(hpage, type, disp_time, trans_time);

@@ -6,14 +6,7 @@
             <Abi>armeabi-v7a</Abi>
         </AndroidNativeLibrary>
     </ItemGroup>
-	
-	 <ItemGroup>
-	    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)..\..\runtimes\android\armeabi\libharu23.so">
-			<Link>$(MSBuildThisFileDirectory)..\..\runtimes\android\armeabi\libharu23.so</Link>
-            <Abi>armeabi</Abi>
-        </AndroidNativeLibrary>
-    </ItemGroup>
-	
+
 	 <ItemGroup>
 	    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)..\..\runtimes\android\x86\libharu23.so">
 			<Link>$(MSBuildThisFileDirectory)..\..\runtimes\android\x86\libharu23.so</Link>
@@ -34,5 +27,37 @@
             <Abi>x86_64</Abi>
         </AndroidNativeLibrary>
     </ItemGroup>
+	
+	<ItemGroup>
+	    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)..\..\runtimes\android\armeabi-v7a\libImageLibrary.so">
+			<Link>$(MSBuildThisFileDirectory)..\..\runtimes\android\armeabi-v7a\libImageLibrary.so</Link>
+            <Abi>armeabi-v7a</Abi>
+        </AndroidNativeLibrary>
+    </ItemGroup>
+
+	 <ItemGroup>
+	    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)..\..\runtimes\android\x86\libImageLibrary.so">
+			<Link>$(MSBuildThisFileDirectory)..\..\runtimes\android\x86\libImageLibrary.so</Link>
+            <Abi>x86</Abi>
+        </AndroidNativeLibrary>
+    </ItemGroup>
+
+       <ItemGroup>
+	    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)..\..\runtimes\android\arm64-v8a\libImageLibrary.so">
+			<Link>$(MSBuildThisFileDirectory)..\..\runtimes\android\arm64-v8a\libImageLibrary.so</Link>
+            <Abi>arm64-v8a</Abi>
+        </AndroidNativeLibrary>
+    </ItemGroup>
+	
+	<ItemGroup>
+	    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)..\..\runtimes\android\x86_64\libImageLibrary.so">
+			<Link>$(MSBuildThisFileDirectory)..\..\runtimes\android\x86_64\libImageLibrary.so</Link>
+            <Abi>x86_64</Abi>
+        </AndroidNativeLibrary>
+    </ItemGroup>
+	
+	
+	
+	
 
 </Project>

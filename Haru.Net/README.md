@@ -43,6 +43,18 @@ Contains altered 3rd party software:
     * Fix method HPdfDoc.LoadRawImageFromMem - changed argument types according to original definition of the C function
     * Fix method HPdfPage.SetRGBStroke - now returns the result of the function HPDF_Page_SetRGBStroke
 
-License:
+## License:
 See LICENSE file.
 
+## Changes:
+* Version: 1.1, 8/26/2019
+  * Add the haru.net methods that supports encodings other than current ACP encoding
+  * Add native builds bit_depth fix for win/linux/osx dlls
+  * Add ability to deblurring image on android
+  * Rebuild native binaries (android, ios, mingw and linux/macos static libs) 
+  * Add x64 binary for android
+  * Add arm libraries, add build scripts
+
+
+* Version: 1.0, 6/20/2019
+  * Initial release
