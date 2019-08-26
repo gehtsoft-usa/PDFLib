@@ -18,7 +18,7 @@
 /*
 This is altered version of libharu 2.4.0dev.
 Modified by Gehtsoft USA, LLC, git@gehtsoftusa.com
-Version:  2.4.0dev-gehtsoft-mods-v1, 6/20/2019
+Version:  2.4.0dev-gehtsoft-mods-v2, 8/26/2019
 This modified version is part of a cross-platform library Haru.Native designed
 to get a convenient nuget package for libharu.
 */
@@ -475,6 +475,8 @@ LoadPngData  (HPDF_Dict     image,
     /* 16bit images are not supported. */
     if (bit_depth == 16) {
         png_set_strip_16(png_ptr);
+        bit_depth = 8;
+
     }
 
     png_read_update_info(png_ptr, info_ptr);

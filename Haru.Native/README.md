@@ -5,7 +5,7 @@ for Haru.Net and Haru.Net.Mobile projects.
 
 Author: Gehtsoft USA, LLC, git@gehtsoftusa.com
 
-Version: 1.0, 6/20/2019
+Version: 1.1, 8/26/2019
 
 Contains altered 3rd party software:
 
@@ -40,3 +40,14 @@ Contains altered 3rd party software:
 License:
 See LICENSE file.
 
+
+Changes:
+
+* Version: 1.1, 8/26/2019
+  * Update remote build to support static libs
+  * Fix bit_depth for 16 bit png
+  * Add ARM libraries and build scripts
+  * Rebuild native binaries (Android, IOS, MinGW and Linux/MacOS static libs)
+
+* Version: 1.0, 6/20/2019
+  * Initial release

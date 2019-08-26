@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 project(libharu23)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 11)
 
 include(./cmake/ucm.cmake)
 
@@ -32,7 +32,8 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
     ucm_add_flags(CXX /W3)
 endif()
 
-add_library(libharu23 SHARED src/libharu/hpdf.h
+
+set(SOURCES src/libharu/hpdf.h
         src/libharu/hpdf_3dmeasure.c
         src/libharu/hpdf_3dmeasure.h
         src/libharu/hpdf_annotation.c
@@ -175,4 +176,10 @@ add_library(libharu23 SHARED src/libharu/hpdf.h
 	${PLATFORM_SPEC_HEADERS}
         )
 
+add_library(libharu23 SHARED ${SOURCES})
+add_library(libharu23Static STATIC ${SOURCES})
+set_target_properties(libharu23Static PROPERTIES PREFIX "")
 set_target_properties(libharu23 PROPERTIES PREFIX "")
+
+set_property(TARGET libharu23 PROPERTY POSITION_INDEPENDENT_CODE ON)
+set_property(TARGET libharu23Static PROPERTY POSITION_INDEPENDENT_CODE ON)

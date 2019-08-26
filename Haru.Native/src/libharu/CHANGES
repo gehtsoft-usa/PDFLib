@@ -1,6 +1,9 @@
 libHaru news
 -------------------------------------------------------------------------------
 
+Version 2.4.0dev-gehtsoft-mods-v2 (8/26/2019)
+- Fix bit_depth for 16 bit PNG
+
 Version 2.4.0dev-gehtsoft-mods-v1 (6/20/2019)
 - Changed file structure, removed unnecessary files
 - Fix compression of PNG image's transparency mask

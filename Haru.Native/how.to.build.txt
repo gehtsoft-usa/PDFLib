@@ -8,7 +8,25 @@ Windows.
 
 3) Simply run win32.bat to build 32-bit version and win64.bat to build 64-bit version. DLLs will be available in Release subfolder of
    build32 and build64 folders.
+   
+Build static libraries using MinGW on Windows:
 
+1) Make sure you have MinGW x32 (https://osdn.net/projects/mingw/releases/) with base system installed to the C:\MinGW directory to build 32bit version.
+
+2) Make sure you have MinGW x64 (https://sourceforge.net/projects/mingw-w64/) with base system installed to the C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64 directory to build 64bit version.
+
+3) CMake must be installed and available via PATH.
+
+4) If you want to build 32bit static library add C:\MinGW\bin to the PATH environment variable.
+   If you want to build 64bit static library add C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin to the PATH environment variable.
+
+5) Run cmd.exe from Haru.Native directory and run folowing command in the console (use the mingw32-make command for both x32 and x64 builds):
+	  cmake . -G "MinGW Makefiles"
+	  mingw32-make
+
+6) As a result, the static library libharu23Static.a will be located in the Haru.Native folder.
+	
+	
 Linux (CentOS)
 
 1) Must have CentOS 7 (virtual or phisical server) with
@@ -22,6 +40,38 @@ Linux (CentOS)
 3) Simply run linux.sh as ./linux.sh
 
 4) 64-bit linux binaries will be linux64 folder
+
+Build static and dynamic libraries using linaro toolchain for embedded arm processors:
+
+1) Must have linaro toolchains for embedded arm processors:
+      - https://releases.linaro.org/components/toolchain/binaries/5.5-2017.10/arm-linux-gnueabihf/gcc-linaro-5.5.0-2017.10-i686_arm-linux-gnueabihf.tar.xz
+      - https://releases.linaro.org/components/toolchain/binaries/5.5-2017.10/arm-linux-gnueabihf/gcc-linaro-5.5.0-2017.10-x86_64_arm-linux-gnueabihf.tar.xz
+
+   Linaro toolchain usually is supplied as a tar.* archive, you can extract it into the folder /opt).
+
+2) Must have CMake installed.
+
+3) Must have GCC and G++ compilers installed.
+
+4) Must have ibstdc++, libz and libncurses libraries installed. 
+   If no such packages available in CentOS, you should run following commands in the terminal: 
+
+	sudo yum install libstdc++*    
+	sudo yum install zlib*
+	sudo yum install zlib.i686
+	sudo yum install libncurses*
+
+5) Update TOOLCHAIN_ROOT variable in the arm32-toolchain.cmake and arm64-toolchain.cmake files. 
+   The TOOLCHAIN_ROOT variable must point to the root folder of linaro toolchain.
+
+6) Copy src folder, CMakeList.txt, arm32-toolchain.cmake, arm64-toolchain.cmake and linux.sh files to CentOS
+   You may need to chmod 0777 linux.sh
+
+7) Simply run linux.sh as ./linux.sh with arm32 or arm64 command line argument.
+
+8) As a result, the static library and the dynamic libraries will be located in the Haru.Native folder.
+
+
 
 MacOS
 
@@ -76,7 +126,7 @@ Before building:
 1) Make sure that you have MacOS with XCode console tools installed.
 
 2) Make sure that you have CMake installed. Sometimes CMake does not install command line tools properly, in this case use the command:
-sudo /Applications/CMake.app/Contents/bin/cmake-gui –install
+sudo /Applications/CMake.app/Contents/bin/cmake-gui -install
 
 3) Copy src and ios folders, CMakeList.txt and ios.sh to any directory on the Mac.
 You may need to chmod 0777 ios.sh
