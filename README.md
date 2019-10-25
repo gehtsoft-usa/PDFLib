@@ -6,11 +6,9 @@ Target frameworks: net451+, netstandard2.0 (including netcore).
 Resulting nuget package contains precompiled binaries for win32, win64, linux64 
 (tested on CentOS 7 and Ununtu 18) and MacOS.
 
-Author: Gehtsoft USA, LLC, git@gehtsoftusa.com
-
 Version: 1.1, 8/26/2019
 
-Contains altered 3rd party software:
+Contains altered 3rd party software. The changes are made by Gehtsoft USA LLC (git@gehtsoftusa.com)
 
 * libharu 2.4.0dev, http://libharu.org
   * Copyright:
@@ -54,6 +52,7 @@ Contains altered 3rd party software:
 
 * Version: 1.0, 6/20/2019
   * Initial release
+
 ## License
 
 Haru is distributed under the ZLIB/LIBPNG License. Because ZLIB/LIBPNG License 
