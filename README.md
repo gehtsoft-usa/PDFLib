@@ -43,9 +43,6 @@ Contains altered 3rd party software:
     * Fix method HPdfDoc.LoadRawImageFromMem - changed argument types according to original definition of the C function
     * Fix method HPdfPage.SetRGBStroke - now returns the result of the function HPDF_Page_SetRGBStroke
 
-## License:
-Zlib, Libpng
-
 ## Changes:
 * Version: 1.1, 8/26/2019
   * Add the haru.net methods that supports encodings other than current ACP encoding
@@ -57,3 +54,49 @@ Zlib, Libpng
 
 * Version: 1.0, 6/20/2019
   * Initial release
+## License
+
+Haru is distributed under the ZLIB/LIBPNG License. Because ZLIB/LIBPNG License 
+is one of the freest licenses, You can use Haru for various purposes.
+
+The license of Haru is as follows.
+
+Copyright (C) 1999-2006 Takeshi Kanno
+Copyright (C) 2007-2009 Antony Dovgal
+
+This software is provided 'as-is', without any express or implied warranty.
+
+In no event will the authors be held liable for any damages arising from the 
+use of this software.
+
+Permission is granted to anyone to use this software for any purpose,including 
+commercial applications, and to alter it and redistribute it freely, subject 
+to the following restrictions:
+
+ 1. The origin of this software must not be misrepresented; you must not claim 
+    that you wrote the original software. If you use this software in a 
+    product, an acknowledgment in the product documentation would be 
+    appreciated but is not required.
+ 2. Altered source versions must be plainly marked as such, and must not be 
+    misrepresented as being the original software.
+ 3. This notice may not be removed or altered from any source distribution.
+
+
+*
+* Acknowledgment
+*
+1. Information-technology Promotion Agency(IPA)
+   The development of Haru has been supported by Exploratory Software Project 
+   of Information-technology Promotion Agency(IPA), Japan. 
+
+2. All users of libHaru.
+   We wish to thank all users of Haru.
+   In particular, we thank Thomas Nimstad, LeslieM, Par Hogberg, adenelson, 
+   Riccardo Cohen, sea_sbs, Andrew. 
+   They gave me very useful advices.
+
+3. Sourceforge.net
+   We would like to thank sourceForge.net for project hosting.
+
+4. Adobe Systems Inc.
+   We thank Adobe Systems Inc. for publishing PDF specification.
