@@ -8,7 +8,11 @@ Resulting nuget package contains precompiled binaries for win32, win64, linux64
 
 Version: 1.1, 8/26/2019
 
-Contains altered 3rd party software. The changes are made by Gehtsoft USA LLC (git@gehtsoftusa.com)
+Contains altered 3rd party software. 
+
+The changes are made by Gehtsoft USA LLC (git@gehtsoftusa.com)
+
+.NET wrappers are made by Gehtsoft USA LLC (git@gehtsoftusa.com) 
 
 * libharu 2.4.0dev, http://libharu.org
   * Copyright:
