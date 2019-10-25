@@ -81,9 +81,8 @@ to the following restrictions:
  3. This notice may not be removed or altered from any source distribution.
 
 
-*
-* Acknowledgment
-*
+## Acknowledgment
+
 1. Information-technology Promotion Agency(IPA)
    The development of Haru has been supported by Exploratory Software Project 
    of Information-technology Promotion Agency(IPA), Japan. 
