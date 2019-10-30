@@ -8,7 +8,7 @@
     <projectUrl>http://libharu.org/</projectUrl>
     <license type="expression">Zlib AND Libpng</license>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>Libharu (Haru FREE PDF Library) .NET wrapper for net451+ and netstandard2.0 (including netcore). The package consists of precompiled binaries for win32, win64, linux64, linux arm32 (tested on CentOS 7, Ubuntu 18 and Debian 10) and MacOS.</description>
+    <description>Libharu (Haru FREE PDF Library) .NET wrapper for net451+ and netstandard2.0 (including netcore). The package consists of precompiled binaries for win32, win64, linux64 (tested on CentOS 7 and Ubuntu 18), linux arm32 (tested on Debian 10) and MacOS.</description>
     <releaseNotes></releaseNotes>
     <dependencies>
       <group targetFramework="net451"></group>
